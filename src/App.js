@@ -19,6 +19,23 @@ function App() {
       <div className="black-nav">
         <h4>HEE BLOG</h4>
       </div>
+
+      <button onClick={()=>{
+
+        let arr = [1, 2, 3];
+        //array/object담은 변수엔 화살표만 저장됨 123은 미지의 공간 ram에 저장됨
+        //state변경함수 기존state = 신규state경우 변경 안해줌
+
+        //arry object다룰 때 원본은 보존하는게 좋음
+        //console.log(copy == a) true 그래서 변경이 안됨 기존 state에서 변경이 안됬다고 생각해서 : reference data type 더공부하기
+        //object도 마찬가지임 ... : 괄호 벗겨 주세요 괄호 씌워주세요 이러면 화살표도 달라짐 -> 새로운 스테이트로 이해해서 변경됨
+
+        //기존 state가 array, object data면 stata수정할때 독립적 카피본을 만들어서 수정하자! : shallow copy
+        let copy = [...a];
+        copy[0] = '여자 코트 추천';
+        b(copy);
+      }}>글수정</button>
+
       <div className="list">
         {/* onclick이벤트 핸들러 {}안에 함수 넣어야함 ()=>{} 함수 넣어도 됨*/}
         {/* state변경 등호로 변경하면 안됨 */}
