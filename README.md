@@ -32,7 +32,7 @@ let [a,b] = useState('보관할 자료');
 
 - onClick 이벤트 핸들러
 
-<div onClick={ function(){ 실행할코드 } }> / <div onClick={ () => { 실행할코드 } }>
+< div onClick={ function(){ 실행할코드 } }> / < div onClick={ () => { 실행할코드 } }>
 
 클릭시 뭔가 실행하려고 할때 state 변경함수 b 를 꼭 사용 onClick={()=>b(a+1)}
 
