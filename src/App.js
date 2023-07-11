@@ -1,3 +1,5 @@
+/*eslint-disable*/ 
+
 import { useState } from 'react';
 import './App.css';
 
@@ -6,8 +8,14 @@ function App() {
   let [a, b] = useState(['남자 코트 추천', '여자 신발 추천', '한남동 카페 추천', '성수동 맛집 추천', '이달의 영화 추천']);
   let [따봉, 따봉변경] = useState(0);
   let [modal, setModal] = useState(false);
-  // 스위치 역할
-  // ui 현재 상태를 state로 저장 (모달창 상태 표현 true false)
+
+  // [1,2,3].map(function(){
+  //   return '1233211'
+  // });
+  //map함수 : 사용법 array 뒤에 콜백 함수
+  //array 자료 갯수만큼 함수안의 코드 실행해줌
+  //함수의 파라미터는 array안에 있던 자료임
+  //return에 뭐 적으면 array로 담아줌
 
   return (
     <div className="App">
@@ -27,7 +35,7 @@ function App() {
         b(copy);
       }}>글수정</button>
 
-      <div className="list">
+      {/* <div className="list">
         <h4>{ a[0] } <span onClick={()=>{ 따봉변경(따봉+1) }}>🩵</span> {따봉} </h4>
         <p>7월 10일 발행</p>
       </div>
@@ -48,13 +56,25 @@ function App() {
         <button onClick={()=>{ setModal(!modal) }}>{ a[4] }</button>
         <p>6월 7일 발행</p>
       </div>
-
-      {/* html 중간에 조건문 쓰려면 삼항연산자 / 모달 컴포넌트 state 삼항연산자로 짜기 */}
-      {/* 기계 역할 */}
+      
       {
         modal == true ? <Modal/> : null
-        // 1 == 1 ? '맞음' : '아님'
+      } */}
+
+      {
+        a.map(function(){
+          return (
+            <div className="list">
+              <h4>{ a[3] }</h4>
+              <p>6월 15일 발행</p>
+            </div>
+          )
+        })
+        // [<div>안녕</div>,<div>안녕</div>,<div>안녕</div>]
       }
+      {/* [1,2,3].map 반복함수 / 리액트는 array 안에 html담아놔도 잘 보여줌 */}
+      {/* state.map 로하면 a 갯수만큼 자료 생성 */}
+      
     </div>
   );
 };
@@ -68,14 +88,5 @@ function Modal(){
     </div>
   );
 };
-
-//동적인 UI 만드는 step
-//html css로 미리 디자인완성
-//ui의 현재 상태를 state로 저장
-//state에 따라 UI가 어떻게 보일지 작성
-//조건문 등으로
-
-//리액트에선 버튼 누르면 모달창 스위치만 건드림
-//자바스크립트였으면 버튼 누르면 모달창 html을 직접 건드림
 
 export default App;
