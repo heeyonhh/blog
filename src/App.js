@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import './App.css';
 
-//실은 컴포넌트임
 function App() {
 
   let [a, b] = useState(['남자 코트 추천', '여자 신발 추천', '한남동 카페 추천', '성수동 맛집 추천', '이달의 영화 추천']);
   let [따봉, 따봉변경] = useState(0);
+  let [modal, setModal] = useState(false);
+  // 스위치 역할
+  // ui 현재 상태를 state로 저장 (모달창 상태 표현 true false)
 
   return (
     <div className="App">
@@ -13,7 +15,6 @@ function App() {
         <h4>HEE BLOG</h4>
       </div>
 
-      {/* 정렬 필터 */}
       <button onClick={()=>{
         let copy = [...a];
         copy.sort();
@@ -44,22 +45,20 @@ function App() {
         <p>6월 15일 발행</p>
       </div>
       <div className="list">
-        <h4>{ a[4] }</h4>
+        <button onClick={()=>{ setModal(!modal) }}>{ a[4] }</button>
         <p>6월 7일 발행</p>
       </div>
 
-      {/* html 깔끔하게 쓰기 */}
-      <Modal/>
-      {/* <Modal></Modal> */}
-
-      <Login/>
+      {/* html 중간에 조건문 쓰려면 삼항연산자 / 모달 컴포넌트 state 삼항연산자로 짜기 */}
+      {/* 기계 역할 */}
+      {
+        modal == true ? <Modal/> : null
+        // 1 == 1 ? '맞음' : '아님'
+      }
     </div>
   );
 };
 
-//컴포넌트 만들때 다른 펑션 바깥에 만들기 & 영어대문자
-//컴포넌트 : 반복적인 html 축약할때 / 페이지 전환 / 자주 변경되는 것들
-//컴포넌트를 만드는 것은 자유지만 책임이 따름 : 컴포넌트의 단점 state가져다 쓸때 문제 생김, 다른 펑션안에 있는 변수 쓸수 없음
 function Modal(){
   return(
     <div className='modal'>
@@ -67,24 +66,16 @@ function Modal(){
       <p>날짜</p>
       <p>상세내용</p>
     </div>
-    //의미 없는 <div>대신 <></>사용가능 : 프래그먼트 문법
   );
 };
 
-//컴포넌트 문법 2
-// let Modal = () => {
-//   return(
-//     <div></div>
-//   )
-// }
-// const 로 하면 에러메세지 띄어주는 장점이 있음
+//동적인 UI 만드는 step
+//html css로 미리 디자인완성
+//ui의 현재 상태를 state로 저장
+//state에 따라 UI가 어떻게 보일지 작성
+//조건문 등으로
 
-const Login = () => {
-  return(
-    <>
-      🐻‍❄️🐻‍❄️🐻‍❄️🐻‍❄️🐻‍❄️🩵🩵🩵🩵🩵👖👖👖👖👖
-    </>
-  )
-}
+//리액트에선 버튼 누르면 모달창 스위치만 건드림
+//자바스크립트였으면 버튼 누르면 모달창 html을 직접 건드림
 
 export default App;
