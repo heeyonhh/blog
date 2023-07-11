@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# REACT STUDY👩🏻‍💻
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## 0710
 
-In the project directory, you can run:
+- JSX 문법 1. html에 class 넣을 땐 className
 
-### `npm start`
+- JSX 문법 2. 변수를 html에 꽂아넣을 때는 {중괄호} : 데이터바인딩
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+href, id, className, src 등 여러가지 html 속성들에도 가능
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- JSX 문법 3. html에 style속성 style={ {color : 'blue', fontSize : '30px'} }
 
-### `npm test`
+{}안에 {}자료형으로 집어넣기 / fontSize 대쉬기호 쓸 수 없음 대문자로 치환
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+- 중요한 데이터를 저장할 땐 변수 대신 state
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+import {useState} from 'react' 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+useState('보관할 자료')
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+let [a,b] = useState('보관할 자료');
 
-### `npm run eject`
+자바스크립트 destructuring 문법 : let [name, age] = ['Kim', 20]
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+로고 같은 변경되지 않은 데이터는 변수로 / state는 변동사항이 생기면 html 자동 재렌더링 / 스무스하게 동작함
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+/*eslint-disable*/ eslint 기능 끄기
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+onClick 이벤트 핸들러
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<div onClick={ function(){ 실행할코드 } }> / <div onClick={ () => { 실행할코드 } }>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+클릭시 뭔가 실행하려고 할때 state 변경함수 b 를 꼭 사용 onClick={()=>b(a+1)}
 
-### Code Splitting
+기존값은 보존해주는 식으로 코드짜는게 좋은관습
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    <button onClick={ ()=>{ 
+  
+      let copy = [...a];
+      
+      copy[0] = '여자코트 추천';
+      
+      b(copy)
+      
+    } }> 수정버튼 </button>
 
-### Analyzing the Bundle Size
+state 변경함수 동작원리 : array/object 동작원리 javascript reference data type
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+... : spread operator array나 object 자료형 왼쪽에 붙이며 괄호를 벗겨주세요 ...[1,2,3]
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+독립적인 사본 shallow copy / deep copy 해주기
