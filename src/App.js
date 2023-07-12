@@ -6,7 +6,7 @@ import './App.css';
 function App() {
 
   let [글제목, 글제목변경] = useState(['남자 코트 추천', '여자 신발 추천', '한남동 카페 추천', '성수동 맛집 추천', '이달의 영화 추천']);
-  let [따봉, 따봉변경] = useState(0);
+  let [따봉, 따봉변경] = useState([0,0,0,0,0]);
   let [modal, setModal] = useState(false);
 
   return (
@@ -54,18 +54,14 @@ function App() {
       } */}
 
       {
-        // 글제목.map(function(a, i){
-        //   return (
-        //     <div className="list">
-        //       <h4>{ 글제목[i] }</h4>
-        //       <p>6월 15일 발행</p>
-        //     </div>
-        //   )
-        // })
-        글제목.map(function(a){
+        글제목.map(function(a, i){
           return (
-            <div className="list">
-              <h4>{ a }</h4>
+            <div className="list" key={i}>
+              <h4>{ 글제목[i] } <span onClick={()=>{
+                let copy = [...따봉];
+                copy[i] = copy[i] + 1;
+                따봉변경(copy)
+              }}>🩵</span> { 따봉[i] } </h4>
               <p>6월 15일 발행</p>
             </div>
           )
