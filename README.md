@@ -60,7 +60,7 @@ state 변경함수 동작원리 : array/object 동작원리 javascript reference
 
 - fragment 문법 :
   
-    <div></div> -> <></>
+    < div>< /div> -> <></>
 
 - Component 문법 : HTML을 깔끔하게 한 단어로 치환해서 원하는 곳에 꽂아넣을 수 있음 <Modal />
 
