@@ -27,7 +27,7 @@ useState('보관할 자료')
 로고 같은 변경되지 않은 데이터는 변수로 / state는 변동사항이 생기면 html 자동 재렌더링 / 스무스하게 동작함
 
 
-    / * eslint-disable * / eslint 기능 끄기
+    /* eslint-disable */ eslint 기능 끄기
 
 
 - onClick 이벤트 핸들러
