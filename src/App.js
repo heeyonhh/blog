@@ -31,9 +31,8 @@ function App() {
       }
       
       {
-        modal == true ? <Modal color={'skyblue'} 글제목={글제목}/> : null
+        modal == true ? <Modal 글제목변경={글제목변경} 글제목={글제목}/> : null
       }
-      
     </div>
   );
 };
@@ -41,16 +40,16 @@ function App() {
 function Modal(props){
   return(
     <div className='modal' style={{background: props.color}}>
-      <h4>{props.글제목[0]}</h4>
+      <h4 id='name'>{props.글제목[0]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
+      <button onClick={()=>{
+        props.글제목변경(['여자코트 추천', '강남 맛집 추천', '파이썬 독학', '성수동 맛집 추천', '이달의 영화 추천'])
+      }}>글수정</button>
     </div>
   );
 };
 
-//모든 변수는 탈출 불가 : props문법 쓰기
-//app : 부모 modal : 자식 부모 -> 자식으로 전송
-//1.<부모 컴포넌트 작명={state이름}
-//2.props 파라미터 등록 후 props.작명
+//변수 뿐만 아니라 state도 props 전송 가능
 
 export default App;
