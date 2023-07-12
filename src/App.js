@@ -15,49 +15,11 @@ function App() {
         <h4>HEE BLOG</h4>
       </div>
 
-      {/* <button onClick={()=>{
-        let copy = [...a];
-        copy.sort();
-        b(copy);
-      }}>정렬</button>
-
-      <button onClick={()=>{
-        let copy = [...a];
-        copy[0] = '여자 코트 추천';
-        b(copy);
-      }}>글수정</button>
-
-      <div className="list">
-        <h4>{ a[0] } <span onClick={()=>{ 따봉변경(따봉+1) }}>🩵</span> {따봉} </h4>
-        <p>7월 10일 발행</p>
-      </div>
-
-      <div className="list">
-        <h4>{ a[1] }</h4>
-        <p>7월 8일 발행</p>
-      </div>
-      <div className="list">
-        <h4>{ a[2] }</h4>
-        <p>7월 2일 발행</p>
-      </div>
-      <div className="list">
-        <h4>{ a[3] }</h4>
-        <p>6월 15일 발행</p>
-      </div>
-      <div className="list">
-        <button onClick={()=>{ setModal(!modal) }}>{ a[4] }</button>
-        <p>6월 7일 발행</p>
-      </div>
-      
-      {
-        modal == true ? <Modal/> : null
-      } */}
-
       {
         글제목.map(function(a, i){
           return (
             <div className="list" key={i}>
-              <h4>{ 글제목[i] } <span onClick={()=>{
+              <h4 onClick={()=>{setModal(true)}}>{ 글제목[i] } <span onClick={()=>{
                 let copy = [...따봉];
                 copy[i] = copy[i] + 1;
                 따봉변경(copy)
@@ -67,26 +29,28 @@ function App() {
           )
         })
       }
-      {/* map함수 : 사용법 array 뒤에 콜백 함수
-      array 자료 갯수만큼 함수안의 코드 실행해줌
-      함수의 파라미터는 array안에 있던 자료임
-      return에 뭐 적으면 array로 담아줌
-      state.map 로하면 글제목 갯수만큼 자료 생성
-      i : 반복문이 돌때마다 0부터 1씩 증가하는 정수
-      비슷한 html 반복 생성하려면 map()쓰자*/}
+      
+      {
+        modal == true ? <Modal color={'skyblue'} 글제목={글제목}/> : null
+      }
       
     </div>
   );
 };
 
-function Modal(){
+function Modal(props){
   return(
-    <div className='modal'>
-      <h4>제목</h4>
+    <div className='modal' style={{background: props.color}}>
+      <h4>{props.글제목[0]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
     </div>
   );
 };
+
+//모든 변수는 탈출 불가 : props문법 쓰기
+//app : 부모 modal : 자식 부모 -> 자식으로 전송
+//1.<부모 컴포넌트 작명={state이름}
+//2.props 파라미터 등록 후 props.작명
 
 export default App;
