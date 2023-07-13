@@ -158,6 +158,19 @@ a 파라미터는 map이 반복될때마다 array자료 안에 있던 하나하�
 
 map 반복문으로 반복생성한 html엔 key={i} 이런 속성을 추가
 
+      글제목.map(function(a, i){
+          return (
+            <div className="list">
+              <h4>{ a }</h4>
+            <div className="list" key={i}>
+              <h4>{ 글제목[i] } <span onClick={()=>{
+                let copy = [...따봉];
+                copy[i] = copy[i] + 1;
+                따봉변경(copy)
+              }}>🩵</span> { 따봉[i] } </h4>
+              <p>6월 15일 발행</p>
+            </div>
+          )
 
 ## 0712
 
@@ -171,46 +184,54 @@ props : 10개, 1000개 무한 전송 가능 변수, 함수 전송 가능
 
 자식 -> 부모 전송 불가능 /  옆집 컴포넌트 전송 불가능
 
-    <Modal color={'skyblue'} />
-    
-    style={{ background : props.color }}
+        <Modal color={'skyblue'} />
+        
+        style={{ background : props.color }}
 
 - 글제목 동적 ui (모달) state props 활용으로 바꾸기
 
-    function App (){
-      let [title, setTitle] = useState(0);
-      (생략)
-      {
-        modal == true ? <Modal title={title} 글제목={글제목} /> : null
-      }
-    }
-    
-    function Modal(props){
-      return (
-        <div className="modal">
-          <h4>{ props.글제목[props.title] }</h4>
-          <p>날짜</p>
-          <p>상세내용</p>
-        </div>
-      )
-    }
+        function App (){
+          let [title, setTitle] = useState(0);
+          (생략)
+          {
+            modal == true ? <Modal title={title} 글제목={글제목} /> : null
+          }
+        }
+        
+        function Modal(props){
+          return (
+            <div className="modal">
+              <h4>{ props.글제목[props.title] }</h4>
+              <p>날짜</p>
+              <p>상세내용</p>
+            </div>
+          )
+        }
 
 - 글 클릭했을때
 
-    function App (){
-      return (
-        <div>
-          { 
-            글제목.map(function(a, i){
-              return (
-              <div className="list">
-                <h4 onClick={()=>{ setModal(true); setTitle(i); }}>{ 글제목[i] }</h4>
-                <p>2월 18일 발행</p>
-              </div> )
-            }) 
-          }
-        </div>
-      )
+        function App (){
+          return (
+            <div>
+              { 
+                글제목.map(function(a, i){
+                  return (
+                  <div className="list">
+                    <h4 onClick={()=>{ setModal(true); setTitle(i); }}>{ 글제목[i] }</h4>
+                    <p>2월 18일 발행</p>
+                  </div> )
+                }) 
+              }
+            </div>
+          )
     }
 
 - 다양한 컴포넌트에서 쓰이는 state는 최고 부모에 만들어놔야 함
+
+
+
+## 0713
+
+
+
+- 
