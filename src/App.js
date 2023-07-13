@@ -1,5 +1,3 @@
-/*eslint-disable*/ 
-
 import { useState } from 'react';
 import './App.css';
 
@@ -9,6 +7,8 @@ function App() {
   let [따봉, 따봉변경] = useState([0,0,0,0,0]);
   let [modal, setModal] = useState(false);
   let [title, setTitle] = useState(0);
+  let [입력값, 입력값변경] = useState('');
+  // 인풋값 저장 '' 빈문자
 
   return (
     <div className="App">
@@ -20,20 +20,33 @@ function App() {
         글제목.map(function(a, i){
           return (
             <div className="list" key={i}>
-              <h4 onClick={()=>{setModal(!modal); setTitle(i) }}>{ 글제목[i] } <span onClick={()=>{
+              <h4 onClick={()=>{setModal(!modal); setTitle(i) }}>{ 글제목[i] }
+              <span onClick={(e)=>{
+                e.stopPropagation();
+                // 이벤트 버블링 막기
                 let copy = [...따봉];
                 copy[i] = copy[i] + 1;
                 따봉변경(copy)
-              }}>🩵</span> { 따봉[i] } </h4>
+              }}>🩵</span> { 따봉[i] } 
+              <button onClick={()=>{
+                
+              }}>삭제</button>
+              </h4>
               <p>6월 15일 발행</p>
             </div>
           )
         })
       }
-      
-      {/* <button onClick={()=>{ setTitle(0) }}>글제목0</button>
-      <button onClick={()=>{ setTitle(1) }}>글제목1</button>
-      <button onClick={()=>{ setTitle(2) }}>글제목1</button> */}
+
+      {/* input 입력시 코드 실행하고 싶으면 onChange / onInput */}
+      {/* input 입력값 가져오기 e.target.value 저장하기 state*/}
+      <input onChange={(e)=>{
+        입력값변경(e.target.value);
+        console.log(입력값);
+      }} />
+      <button onClick={()=>{
+
+      }}>글 추가</button>
 
       {
         modal == true ? <Modal title={title} 글제목={글제목} /> : null
@@ -52,7 +65,5 @@ function Modal(props){
     </div>
   );
 };
-
-//변수 뿐만 아니라 state도 props 전송 가능
 
 export default App;
