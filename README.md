@@ -84,7 +84,9 @@ Component : 사이트에 반복해서 출현하는 HTML 덩어리를 컴포넌�
 
 단점 : 수백개 만들면 관리힘듬 (한 펑션 안에 있는 변수를 다른 펑션에서 맘대로 쓸 수 없음) 꼭 필요한 곳만 Component로
 
-- 동적인 UI : 1. html css로 미리 UI 디자인을 다 해놓고
+- 동적인 UI :
+
+1. html css로 미리 UI 디자인을 다 해놓고
 
 2. UI의 현재 상태를 state로 저장 let [modal, setModal] = useState(false);
 
@@ -159,4 +161,56 @@ map 반복문으로 반복생성한 html엔 key={i} 이런 속성을 추가
 
 ## 0712
 
-- props 문법
+- props 문법 : 부모 컴토넌트에 있던 state -> 자식 컴포넌트 전송
+
+  1. 자식 컴포넌트 사용하는 곳 <작명={state이름} /> / 작명 = state이름 똑같이 하는 편
+
+  2. 자식 펑션에 props파라미터 등록 후 { props.작명[0] }
+
+props : 10개, 1000개 무한 전송 가능 변수, 함수 전송 가능
+
+자식 -> 부모 전송 불가능 /  옆집 컴포넌트 전송 불가능
+
+    <Modal color={'skyblue'} />
+    
+    style={{ background : props.color }}
+
+- 글제목 동적 ui (모달) state props 활용으로 바꾸기
+
+    function App (){
+      let [title, setTitle] = useState(0);
+      (생략)
+      {
+        modal == true ? <Modal title={title} 글제목={글제목} /> : null
+      }
+    }
+    
+    function Modal(props){
+      return (
+        <div className="modal">
+          <h4>{ props.글제목[props.title] }</h4>
+          <p>날짜</p>
+          <p>상세내용</p>
+        </div>
+      )
+    }
+
+- 글 클릭했을때
+
+    function App (){
+      return (
+        <div>
+          { 
+            글제목.map(function(a, i){
+              return (
+              <div className="list">
+                <h4 onClick={()=>{ setModal(true); setTitle(i); }}>{ 글제목[i] }</h4>
+                <p>2월 18일 발행</p>
+              </div> )
+            }) 
+          }
+        </div>
+      )
+    }
+
+- 다양한 컴포넌트에서 쓰이는 state는 최고 부모에 만들어놔야 함
