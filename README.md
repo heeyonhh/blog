@@ -1,4 +1,4 @@
-# REACT STUDY👩🏻‍💻
+젖# REACT STUDY👩🏻‍💻
 
 
 ## 0710
@@ -232,5 +232,102 @@ props : 10개, 1000개 무한 전송 가능 변수, 함수 전송 가능
 ## 0713
 
 
+- input 사용자가 입력한 글 다루기
 
-- 
+    <input type="text"/>
+    <input type="range"/>
+    <input type="date"/>
+    <input type="number"/>
+    <textarea></textarea>
+    <select></select>
+
+- onChange, onInput : < input >에 뭔가 입력시 코드를 실행
+
+    <input onChange={()=>{ 실행할코드 }}/>
+
+e.target : 현재 이벤트가 발생한 곳 알려줌
+
+e.preventDefault() : 이벤트 기본 동작 막기
+
+e.stopPropagation() : 이벤트 버블링 막기
+
+- e.target.value : < input >에 입력한 데이터 저장하기
+
+    function App (){
+
+      let [입력값, 입력값변경] = useState('');
+      return (
+        <input onChange={(e)=>{ 
+          입력값변경(e.target.value) 
+          console.log(입력값)
+        }} />
+      )}
+
+- unshift 문법 : 버튼 이벤트 입력한 글 글목록 추가 / 스위치와 전등 만들고 state 만지기
+
+    function App (){
+      let [글제목, 글제목변경] = useState(['남자코트추천', '강남우동맛집', '파이썬독학']);
+      let [입력값, 입력값변경] = useState('');
+      return (
+        <div>
+          <input onChange={ (e)=>{ 입력값변경(e.target.value) } } />
+          <button onClick={()=>{ 
+            let copy = [...글제목];
+            copy.unshift(입력값);
+            글제목변경(copy)
+          }}>글발행</button>
+        </div>
+      )
+    }
+
+1. 버튼 이벤트 array 문법 카피
+
+2. copy.unshift(입력값); 맨 앞에 자료 추가하는 문법
+
+3. 글제목변경(copy) 스테이트 변경함수
+
+- splice 문법 : x번째 데이터 삭제
+
+    function App (){
+      let [글제목, 글제목변경] = useState(['남자코트추천', '강남우동맛집', '파이썬독학']);
+      let [입력값, 입력값변경] = useState('');
+      return ( 
+        <div>
+        { 
+         글제목.map(function(a, i){
+            return (
+              <div className="list">
+                <h4>{ 글제목[i] }</h4>
+                <p>2월 18일 발행</p>
+                <button onClick={()=>{ 
+                  let copy = [...글제목];
+                  copy.splice(i, 1);
+                  글제목변경(copy);
+               }}>삭제</button>
+              </div> 
+            )
+         }) 
+        }  
+      </div>
+      )}
+
+1. state 카피
+
+2. copy.splice(i, 1); 인덱스, 1번째 데이터 삭제
+
+3. 글제목변경(copy);
+
+
+- build : 브라우저 친화적인 HTML CSS JS 파일로 바꾸기
+
+build/index.html 파일 전송
+
+하위 경로에 배포하고 싶으면 package.json > "homepage": "http://__/blog", 추가
+
+리액트 라우터가 설치 되어있다면 라우터가 제공하는 basename="" 속성을 추가
+
+https://create-react-app.dev/docs/deployment/#building-for-relative-paths 참고
+
+npm run build
+
+build 폴더 안에 안에 있는 내용을 모두 서버에 올리기 index.html 가 메인페이지
