@@ -233,17 +233,17 @@ props : 10개, 1000개 무한 전송 가능 변수, 함수 전송 가능
 
 
 - input 사용자가 입력한 글 다루기
-
-    <input type="text"/>
-    <input type="range"/>
-    <input type="date"/>
-    <input type="number"/>
-    <textarea></textarea>
-    <select></select>
+    
+        <input type="text"/>
+        <input type="range"/>
+        <input type="date"/>
+        <input type="number"/>
+        <textarea></textarea>
+        <select></select>
 
 - onChange, onInput : < input >에 뭔가 입력시 코드를 실행
 
-    <input onChange={()=>{ 실행할코드 }}/>
+        <input onChange={()=>{ 실행할코드 }}/>
 
 e.target : 현재 이벤트가 발생한 곳 알려줌
 
@@ -253,32 +253,31 @@ e.stopPropagation() : 이벤트 버블링 막기
 
 - e.target.value : < input >에 입력한 데이터 저장하기
 
-    function App (){
-
-      let [입력값, 입력값변경] = useState('');
-      return (
-        <input onChange={(e)=>{ 
-          입력값변경(e.target.value) 
-          console.log(입력값)
-        }} />
-      )}
+        function App (){
+    
+          let [입력값, 입력값변경] = useState('');
+          return (
+            <input onChange={(e)=>{ 
+              입력값변경(e.target.value) 
+              console.log(입력값)
+            }} />
+          )}
 
 - unshift 문법 : 버튼 이벤트 입력한 글 글목록 추가 / 스위치와 전등 만들고 state 만지기
 
-    function App (){
-      let [글제목, 글제목변경] = useState(['남자코트추천', '강남우동맛집', '파이썬독학']);
-      let [입력값, 입력값변경] = useState('');
-      return (
-        <div>
-          <input onChange={ (e)=>{ 입력값변경(e.target.value) } } />
-          <button onClick={()=>{ 
-            let copy = [...글제목];
-            copy.unshift(입력값);
-            글제목변경(copy)
-          }}>글발행</button>
-        </div>
-      )
-    }
+        function App (){
+          let [글제목, 글제목변경] = useState(['남자코트추천', '강남우동맛집', '파이썬독학']);
+          let [입력값, 입력값변경] = useState('');
+          return (
+            <div>
+              <input onChange={ (e)=>{ 입력값변경(e.target.value) } } />
+              <button onClick={()=>{ 
+                let copy = [...글제목];
+                copy.unshift(입력값);
+                글제목변경(copy)
+              }}>글발행</button>
+            </div>
+          )}
 
 1. 버튼 이벤트 array 문법 카피
 
@@ -288,28 +287,28 @@ e.stopPropagation() : 이벤트 버블링 막기
 
 - splice 문법 : x번째 데이터 삭제
 
-    function App (){
-      let [글제목, 글제목변경] = useState(['남자코트추천', '강남우동맛집', '파이썬독학']);
-      let [입력값, 입력값변경] = useState('');
-      return ( 
-        <div>
-        { 
-         글제목.map(function(a, i){
-            return (
-              <div className="list">
-                <h4>{ 글제목[i] }</h4>
-                <p>2월 18일 발행</p>
-                <button onClick={()=>{ 
-                  let copy = [...글제목];
-                  copy.splice(i, 1);
-                  글제목변경(copy);
-               }}>삭제</button>
-              </div> 
-            )
-         }) 
-        }  
-      </div>
-      )}
+        function App (){
+          let [글제목, 글제목변경] = useState(['남자코트추천', '강남우동맛집', '파이썬독학']);
+          let [입력값, 입력값변경] = useState('');
+          return ( 
+            <div>
+            { 
+             글제목.map(function(a, i){
+                return (
+                  <div className="list">
+                    <h4>{ 글제목[i] }</h4>
+                    <p>2월 18일 발행</p>
+                    <button onClick={()=>{ 
+                      let copy = [...글제목];
+                      copy.splice(i, 1);
+                      글제목변경(copy);
+                   }}>삭제</button>
+                  </div> 
+                )
+             }) 
+            }  
+          </div>
+          )}
 
 1. state 카피
 
